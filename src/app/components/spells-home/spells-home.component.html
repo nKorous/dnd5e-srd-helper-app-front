@@ -1,0 +1,39 @@
+<div class="spells-home-container">
+    <div class="spells-home-header">
+        <h1>Spell List</h1>
+    </div>
+    <div class="spells-home-content">
+
+        <dx-data-grid [dataSource]="spellList" height="800px" [rowAlternationEnabled]="true" [showColumnLines]="true" [hoverStateEnabled]="true" (onSelectionChanged)="navToDetail($event)">
+
+            <dxi-column width="100px" dataField="level" caption="Spell Level" dataType="number"></dxi-column>
+            <dxi-column width="150px" dataField="name" caption="Name" dataType="string"></dxi-column>
+            <dxi-column cellTemplate="descTemplate" caption="Description"></dxi-column>
+            <dxi-column width="150px" dataField="school.name" caption="School" dataType="string"></dxi-column>
+            <dxi-column width="150px" dataField="casting_time" caption="Casting Time" dataType="string"></dxi-column>
+            <dxi-column width="150px" dataField="duration" caption="Duration" dataType="string"></dxi-column>
+            <dxi-column width="250px" cellTemplate="classesTemplate" caption="Classes"></dxi-column>
+
+            <div *dxTemplate="let desc of 'descTemplate'">
+                <p class="desc-p" *ngFor="let d of desc.data.desc">
+                    {{ d }}
+                </p>
+            </div>
+
+            <div *dxTemplate="let class of 'classesTemplate'">
+                <p class="desc-p">{{ class.data.classNames.join(', ')}}</p>
+            </div>
+
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-search-panel placeholder="Search..." [width]="500" [visible]="true"></dxo-search-panel>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+
+            <dxo-summary>
+                <dxi-group-item column="name" summaryType="count"></dxi-group-item>
+                <dxi-total-item column="name" summaryType="count"></dxi-total-item>
+            </dxo-summary>
+
+        </dx-data-grid>
+
+    </div>
+</div>

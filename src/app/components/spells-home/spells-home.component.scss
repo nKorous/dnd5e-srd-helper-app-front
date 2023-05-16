@@ -1,0 +1,21 @@
+:host {
+    .spells-home-container {
+        .spells-home-content {
+            ::ng-deep {
+                dx-data-grid {
+                    tbody {
+                        .dx-state-hover:not(.dx-header-row) {
+                            background: lightblue !important;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            .desc-p {
+                word-break: keep-all;
+                white-space: normal;
+            }
+        }
+    }
+}
